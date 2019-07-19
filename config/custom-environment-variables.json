@@ -1,0 +1,13 @@
+{
+  "env": "custom",
+  "jwtPrivateKey" : "vidly_jwtPrivateKey",
+  "dbConfig": {
+      "server": "localhost\\mssqlserver",
+      "database": "teamApp_databaseName",
+      "user": "teamApp_user",
+      "password": "teamApp_password",
+      "port": "1433"
+  }
+}
+
+ 

@@ -1,0 +1,4 @@
+{
+  "env": "test",
+  "jwtPrivateKey" : "vidly_jwtPrivateKey"
+}

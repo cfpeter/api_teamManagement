@@ -1,0 +1,4 @@
+{
+  "env": "default",
+  "jwtPrivateKey" : "vidly_jwtPrivateKey"
+}

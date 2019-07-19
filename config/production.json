@@ -1,0 +1,4 @@
+{
+  "env": "production",
+  "jwtPrivateKey" : "vidly_jwtPrivateKey"
+}
