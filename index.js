@@ -1,16 +1,18 @@
-const config = require('./src/config')
-const express = require('express');
-const app = express();
+"use strict";
 
-require('./startup/routes')(app);
-const db = require('./startup/dtConnection');
+const config = require( "./config" );
+const server = require( "./server" );
 
+const startServer = async () => {
+    try {
+        // create a instance of the server application
+        const app = await server( config );
 
+        // start the web server
+        await app.start();
+    } catch ( err ) {
+        console.log( "startup error:", err ); // eslint-disable-line no-console
+    }
+};
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
-
-
-
- 
-
+startServer();

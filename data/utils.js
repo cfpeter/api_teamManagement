@@ -5,7 +5,7 @@ const { join } = require( "path" );
 
 const loadSqlQueries = async folderName => {
    // determine the file path for the folder
-   const filePath = join( process.cwd(), "src", "data", folderName );
+   const filePath = join( process.cwd(), "data", folderName );
 
    // get a list of all the files in the folder
    const files = await fse.readdir( filePath );

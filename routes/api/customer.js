@@ -3,11 +3,10 @@
 module.exports.register = async server => {
    server.route( {
        method: "GET",
-       path: "/api/person",
+       path: "/api/customer",
        config: {
            handler: async request => {
                try {
-                   
                    // get the sql client registered as a plugin
                    const db = request.server.plugins.sql.client;
 
@@ -15,7 +14,7 @@ module.exports.register = async server => {
                    const userId = "user1234";
 
                    // execute the query
-                   const res = await db.person.getPerson( userId );
+                   const res = await db.events.getEvents( userId );
 
                    // return the recordset object
                    return res.recordset;
