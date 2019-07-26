@@ -20,17 +20,30 @@ const register = async ( { sql, getConnection } ) => {
         return request.query( sqlQueries.getPerson );
     };
 
-    const addEvent = async ( { userId, title, description, startDate, startTime, endDate, endTime } ) => {
+    const addPerson = async ( { 
+        firstName,
+        lastName,
+        dob,
+        gender,
+        email,
+        cellPhone,
+        otherPhone,
+        createrBy
+     } ) => {
+         
         const cnx = await getConnection();
         const request = await cnx.request();
-        request.input( "userId", sql.VarChar( 50 ), userId );
-        request.input( "title", sql.NVarChar( 200 ), title );
-        request.input( "description", sql.NVarChar( 1000 ), description );
-        request.input( "startDate", sql.Date, startDate );
-        request.input( "startTime", sql.Time, startTime );
-        request.input( "endDate", sql.Date, endDate );
-        request.input( "endTime", sql.Time, endTime );
-        return request.query( sqlQueries.addEvent );
+        
+        request.input( "firstName", sql.VarChar( 50 ), firstName );
+        request.input( "lastName", sql.NVarChar( 50 ), lastName );
+        request.input( "DOB", sql.VarChar( 50 ), dob );
+        request.input( "gender", sql.VarChar( 50 ), gender );
+        request.input( "email", sql.VarChar( 50 ), email );
+        request.input( "cellPhone", sql.VarChar( 50 ), cellPhone );
+        request.input( "otherPhone", sql.VarChar( 50 ), otherPhone );
+        request.input( "createrBy", sql.VarChar( 50 ), createrBy );
+        request.input( "updatedBy", sql.VarChar( 50 ), createrBy );
+        return request.query( sqlQueries.addPerson ); 
     };
 
     const updateEvent = async ( { id, userId, title, description, startDate, startTime, endDate, endTime } ) => {
@@ -56,7 +69,7 @@ const register = async ( { sql, getConnection } ) => {
     };
 
     return {
-        addEvent,
+        addPerson,
         deleteEvent,
         getPerson,
         updateEvent

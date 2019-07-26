@@ -31,9 +31,9 @@ assert( SQL_SERVER, "SQL_SERVER configuration is required." );
 assert( SQL_DATABASE, "SQL_DATABASE configuration is required." );
 assert( SQL_USER, "SQL_USER configuration is required." );
 assert( SQL_PASSWORD, "SQL_PASSWORD configuration is required." );
-assert( OKTA_ORG_URL, "OKTA_ORG_URL configuration is required." );
-assert( OKTA_CLIENT_ID, "OKTA_CLIENT_ID configuration is required." );
-assert( OKTA_CLIENT_SECRET, "OKTA_CLIENT_SECRET configuration is required." );
+// assert( OKTA_ORG_URL, "OKTA_ORG_URL configuration is required." );
+// assert( OKTA_CLIENT_ID, "OKTA_CLIENT_ID configuration is required." );
+// assert( OKTA_CLIENT_SECRET, "OKTA_CLIENT_SECRET configuration is required." );
 
 // export the configuration information
 module.exports = {
@@ -48,7 +48,9 @@ module.exports = {
        password: "sqlsapass",
        port: "1433",
        options: {
-           encrypt: sqlEncrypt
+           encrypt: sqlEncrypt,
+            abortTransactionOnError: true // <-- SET XACT_ABORT ON
+      
        }
    }
 // database config... should be coming from config file.

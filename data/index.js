@@ -2,10 +2,13 @@
 
 const events = require( "./events" );
 const person = require( "./person" );
+const auth = require('./auth');
+const customer = require('./customer');
 const sql = require( "mssql" );
 
 const client = async ( server, config ) => {
    let pool = null;
+   
 
    const closePool = async () => {
        try {
@@ -33,14 +36,14 @@ const client = async ( server, config ) => {
                return pool;
            }
            // create a new connection pool
-           pool = await sql.connect( config );
-
+           pool = await sql.connect( config ); 
+           
            // catch any connection errors and close the pool
            pool.on( "error", async err => {
                server.log( [ "error", "data" ], "connection pool error" );
                server.log( [ "error", "data" ], err );
                await closePool();
-           } );
+           } );  
            return pool;
        } catch ( err ) {
            // error connecting to SQL Server
@@ -52,10 +55,14 @@ const client = async ( server, config ) => {
 
    // this is the API the client exposes to the rest
    // of the application
+   
    return {
        events: await events.register( { sql, getConnection } ),
-       person: await person.register( { sql, getConnection } )
+       person: await person.register( { sql, getConnection } ),
+       auth: await auth.register( { sql, getConnection } ),
+       customer: await customer.register( { sql, getConnection } ),
+       pool: pool
    };
 };
 
-module.exports = client;
+module.exports = client; 

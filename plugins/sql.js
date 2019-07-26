@@ -11,7 +11,8 @@ module.exports = {
        const config = server.app.config.sql;
 
        // create an instance of the database client
-       const client = await dataClient( server, config );
+       const client = await dataClient( server, config ); 
+      
 
        // "expose" the client so it is available everywhere "server" is available
        server.expose( "client", client );
